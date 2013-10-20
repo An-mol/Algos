@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+void bruteForceStringSearch(char text[], char pattern[])
+{
+  int n = strlen(text);
+  int m = strlen(pattern);
+  int i, j;
+  for( i = 0; i < n; i++)
+  {
+    for( j = 0; j < m && i+j < n; j++ )
+    {
+      if(text[i+j]!=pattern[j]) break;
+    }
+    if(j == m )
+    {
+      printf("Pattern matched at %d", i);
+      return;
+    }
+  }
+  printf("Pattern not found");
+  return;
+}
+
+int main()
+{
+  char text[20], pattern[5];
+  printf("Enter text: \n");
+  gets(text);
+  printf("Enter pattern\n");
+  gets(pattern);
+  bruteForceStringSearch(text, pattern);
+  return 0;
+}
+/*
+* It should be noted though, that for most practical purposes,
+* which deal with texts based on human languages, this approach 
+* is much faster since the inner loop usually quickly 
+* finds a mismatch and breaks. A problem arises when we are faced with 
+* different kinds of "texts," such as the genetic code.
+*/
